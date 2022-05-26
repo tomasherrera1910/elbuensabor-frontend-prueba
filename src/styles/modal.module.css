@@ -1,0 +1,55 @@
+.modalSize{
+    position: fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    max-width:100%;
+    background-color: #011111;
+    color: #fff;
+}
+.modalContent{
+  background: #111;
+  width: 260px;
+  height: fit-content;
+  padding: 0 20px;
+  margin: auto;
+  position: relative;
+}
+.closeButton{
+    position:absolute;
+    top:-24px;
+    right: -4px;
+    outline:none;
+    border:none;
+    background-color: #0f0f0f;
+    color: #fff;
+    padding:4px;
+    font-size: 32px;
+    cursor: pointer;
+}
+.closeButton:hover{
+    color: #D03737;
+    transition: 0.3s;
+}
+.modalSize form input,
+.modalSize form button {
+    color: #fff;
+    font-size: 1em;
+    padding: 0.5em;
+    outline: none;
+    border:none;
+    background: #000;
+    border-bottom: solid 2px #19216D; 
+}
+.modalSize form input:focus{
+    border-bottom: solid 2px #D03737; 
+}
+.modalSize form button{
+    background-color: #19216D;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 24px;
+    height: 2.5em;
+    width: 100%;
+}

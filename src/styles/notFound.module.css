@@ -1,0 +1,9 @@
+.container{
+    margin: 4.5em 1em;
+}
+.container h1{
+    border-bottom: solid 1px #fff;
+}
+.container h2 {
+    color: #D03737;
+}
