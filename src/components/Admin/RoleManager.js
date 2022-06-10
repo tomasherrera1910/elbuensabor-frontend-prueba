@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
+import useLocalStorage from '../../hooks/useLocalStorage'
 import { NotFound } from "../NotFound";
 import getUsers from '../../utils/users/getUsers'
 import editRole from '../../utils/users/editRole';
 
 import styles from '../../styles/admin.module.css'
-const{container, sectionGrid, headerGrid, select} = styles
+const{container, sectionGrid, headerGrid, select, buttonFilter, buttons} = styles
 export default function RoleManager(){
-    const [usuario,] = useState(JSON.parse(window.localStorage.getItem('userLoggedBuenSabor')))
+    const {usuario} = useLocalStorage()
     const [usuarios, setUsuarios] = useState([])
     const [search, setSearch] = useState('')
     const [rol, setRol] = useState({rol:''})
@@ -27,6 +28,11 @@ export default function RoleManager(){
         setRol({rol:e.target.value,
                 id})
     }
+    const filterHandler = (rol) => {
+        setSearch('')
+        getUsers()
+        .then(data => setUsuarios(data.filter(user => user.rol.toLowerCase().includes(rol.toLowerCase()))))
+    }
     return(
         <div className={container}>
             {usuario?.rol === 'admin'
@@ -35,6 +41,12 @@ export default function RoleManager(){
             <form>
                 <input type='text' placeholder='Buscar usuario por email...' value={search} onChange={handlerSearch}/>
             </form>
+            <section className={buttons}>
+            <button className={buttonFilter} onClick={() => filterHandler('admin')}>ADMINS</button>
+            <button className={buttonFilter} onClick={() => filterHandler('cocinero')}>COCINEROS</button>
+            <button className={buttonFilter} onClick={() => filterHandler('cajero')}>CAJEROS</button>
+            <button className={buttonFilter} onClick={() => filterHandler('')}>TODOS</button>
+            </section>
             <section className={headerGrid}>
                     <p>Email</p><p>ROL</p>
             </section>

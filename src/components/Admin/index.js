@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import { NotFound } from '../NotFound'
 
 import styles from '../../styles/admin.module.css'
-const {container} = styles
+const {container, adminOptions} = styles
 
 export function AdminLandingPage(){
     const [usuario,] = useState(JSON.parse(window.localStorage.getItem('userLoggedBuenSabor')))
@@ -12,7 +12,11 @@ export function AdminLandingPage(){
         {usuario?.rol === 'admin' 
         ?
         <div className={container}>
-            <Link to='users'>Asignación de roles de usuario</Link>
+            <ul className={adminOptions}>
+                <li><Link to='users'>🔹Asignación de roles de usuario 👨🏽‍🍳👨🏽‍💼🔹</Link></li>
+                <li><Link to='articulosInsumo'>🔹Catálogo de artículos insumo🧀🥚🔹</Link></li>
+                <li><Link to='articulosManufacturados'>🔹Administrar platos del restaurante🍔🍕🔹</Link></li>
+            </ul>
         </div>
         :
         <NotFound/>

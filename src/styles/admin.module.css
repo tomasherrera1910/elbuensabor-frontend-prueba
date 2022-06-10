@@ -1,11 +1,15 @@
 .container{
-    margin: 4.5em 2.5%;
+    margin: 4.5em 0.2em;
+    padding:0;
     display:flex;
     justify-content: center;
-    
+}
+.adminOptions li{
+    margin-bottom: 24px;
 }
 .headerGrid{
     display:grid;
+    width:95%;
     grid-template-columns: 1fr 1fr;
     background-color: #19216D;
     text-align:center;
@@ -13,16 +17,17 @@
 }
 .sectionGrid{
     display:grid;
+    width:95%;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: minmax(100px, auto);
     gap:4px;
     text-align:center;
     font-size: 14px;
 }
-
 .container form input,
+.container input,
 .select{
-    width: 95%;
+    width: 90%;
     color: #fff;
     font-size: 1em;
     padding: 0.5em;
@@ -32,6 +37,131 @@
     border-bottom: solid 2px #19216D; 
     margin-bottom: 1em;
 }
-.container form input:focus{
+.container form input:focus,
+.container input:focus{
     border-bottom: solid 2px #D03737; 
+}
+.buttons{
+    width:95%;
+    display: flex;
+    justify-content:center;
+}
+.buttonFilter{
+ background-color:#D03737;
+ color:#fff;
+ outline: none;
+ border: #000;
+ margin: 0 4px;
+ padding: 6px;
+ cursor: pointer;
+}
+.container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.container ul{
+    margin-bottom: 12px;
+}
+.denominacionArticulo{
+    text-transform:uppercase;
+    color:#ccc;
+    font-size: 24px;
+    font-weight: 700;
+}
+.buttonsContainer{
+    display:flex;
+    justify-content:space-between;
+}
+.addButton{
+    background-color: #00d000;
+    border-radius: 9999px;
+    color: #fff;
+    font-size: 16px;
+    padding: 8px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 8px;
+    
+}
+.refreshButton{
+    background-color: #19216D;
+    border-radius: 9999px;
+    color: #fff;
+    font-size: 24px;
+    padding: 8px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+
+.deleteButton{
+    background-color: #D03737;
+    color: #fff;
+    padding: 8px 2px;
+    border: none;
+    cursor: pointer;
+}
+.editButton{
+    background-color: #19216D;
+    color: #fff;
+    padding: 8px 2px;
+    margin-right: 8px;
+    border: none;
+    cursor: pointer;
+}
+.cardInsumos{
+    border: solid 1px rgba(255, 255, 255, 0.5);
+    padding: 16px;
+    margin-bottom: 12px;
+}
+.cardManufacturados{
+    display: grid;
+    grid-template-areas: 
+        'image data'
+        'form form';
+    grid-auto-columns: 100px 150px;
+    grid-auto-rows: max-content;
+    gap:16px;
+    border: solid 1px rgba(255, 255, 255, 0.5);
+    border-top-left-radius: 64px;
+    margin-bottom: 16px;
+}
+.cardManufacturados img{
+    grid-area: image;
+    height: 100px;
+    width:100px;
+    border-radius: 64px;
+}
+.cardManufacturados section{
+    grid-area: data;
+    font-size:10px;
+    font-weight: 700;
+    
+}
+.cardManufacturados div{
+    grid-area: form;
+    padding: 0 16px;
+    padding-bottom: 6px;
+}
+.cardManufacturados div h2{
+    margin:2px 0;
+}
+.cardManufacturados div ul li{
+    font-size: 12px;
+}
+.cardManufacturados div ul li button{
+    padding:0;
+    margin-left: 4px;
+}
+.cardManufacturados form input{
+    width: 100px;
+    height: 12px;
+    margin-right: 4px;
+}
+.cardManufacturados form select{
+    font-size: 12px;
+    
 }

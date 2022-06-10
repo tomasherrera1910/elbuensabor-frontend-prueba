@@ -7,6 +7,8 @@
     max-width:100%;
     background-color: #011111;
     color: #fff;
+    max-height: 420px;
+    overflow-y: scroll;
 }
 .modalContent{
   background: #111;
