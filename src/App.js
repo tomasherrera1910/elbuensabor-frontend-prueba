@@ -5,14 +5,17 @@ import {Home} from './components/Home'
 import {Login} from './components/Login'
 import {CreateAccount} from './components/CreateAccount'
 import {Address} from './components/Address'
+import {Menus} from './components/Menus'
 import {AdminLandingPage} from './components/Admin'
 import RoleManager from './components/Admin/RoleManager'
 import ArticulosInsumo from './components/Admin/ArticulosInsumo'
 import ArticulosManufacturados from './components/Admin/ArticulosManufacturados'
+import CartItems from './context/CartItems'
 
 function App() {
   return (
    <BrowserRouter>
+   <CartItems>
     <Navbar/>
     <Routes>
       <Route path='*' element={<NotFound/>}/>
@@ -20,11 +23,13 @@ function App() {
       <Route path='/login' element={<Login/>}/>
       <Route path='/createAccount' element={<CreateAccount/>}/>
       <Route path='/address' element={<Address/>}/>
+      <Route path='/menus' element={<Menus/>}/>
       <Route path='/admin' element={<AdminLandingPage/>}/>
             <Route path='/admin/users' element={<RoleManager/>}/>
             <Route path='/admin/articulosInsumo' element={<ArticulosInsumo/>}/>
             <Route path='/admin/articulosManufacturados' element={<ArticulosManufacturados/>}/>
     </Routes>
+    </CartItems>
    </BrowserRouter> 
   )
 }

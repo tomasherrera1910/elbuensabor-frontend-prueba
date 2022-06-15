@@ -7,9 +7,9 @@ import styles from '../../../styles/admin.module.css'
 const {editButton, deleteButton, cardInsumos, denominacionArticulo} = styles
 
 export default function CardArticuloInsumo({token, articulo}){
+    const {id, denominacion, rubro, precioCompra, precioVenta, esInsumo, stockActual, unidadMedida} = articulo
     const  [edit, setEdit] = useState(false)
     const[modal, setModal] = useState(false)
-    const {id, denominacion, rubro, precioCompra, precioVenta, esInsumo, stockActual, unidadMedida} = articulo
     const editFormClick = () => {
            setEdit(!edit)
            setModal(!modal)

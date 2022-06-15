@@ -1,7 +1,7 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import handlerChangeForm from '../../../utils/handlers/handlerChangeForm'
 import getImgBase64 from '../../../utils/getImgBase64'
-import { postArticulosManufacturados } from '../../../utils/articulosManufacturados'
+import { postArticulosManufacturados, putArticuloManufacturado } from '../../../utils/articulosManufacturados'
 
 import styles from '../../../styles/admin.module.css'
 const {select} = styles
@@ -13,12 +13,21 @@ const INITIAL_STATE={
     imagen: '',
     tiempoEstimadoCocina: ''
 }
-export default function FormArticuloManufacturado({token, setModal}){
+export default function FormArticuloManufacturado({token, setModal, articulo, edit, setEdit}){
     const [articuloForm, setArticuloForm] = useState(INITIAL_STATE)
-    
+    const [articuloEdit, setArticuloEdit] = useState(false)
+    const titulo = edit ? 'Editar Plato'
+                        : 'Nuevo Plato'
+    const botonSubmit = edit ? 'Guardar Cambios'
+                             : 'Agregar Plato'
+    useEffect(() => {
+        if(edit && !articuloEdit){
+        setArticuloForm({...articulo, imagen:''})
+        setArticuloEdit(true)
+        }
+    },[edit,articulo, articuloEdit])
     const handlerImage = async(e) => {
-        const img = e.target?.files[0] ? await getImgBase64()
-                                              : null
+        const img = await getImgBase64(e.target.files[0]) || null
         setArticuloForm({
         ...articuloForm,
         imagen: img
@@ -29,15 +38,20 @@ export default function FormArticuloManufacturado({token, setModal}){
     }
     const formManufacturadoSubmit = (evt) => {
         evt.preventDefault()
-        console.log(articuloForm)
-        postArticulosManufacturados(articuloForm, token)
-        .then(() => setArticuloForm(INITIAL_STATE))  
-        setModal(false)  
+        if(edit && articuloEdit){
+            putArticuloManufacturado(articulo.id, token, articuloForm)
+        }else{
+            postArticulosManufacturados(articuloForm, token)
+            .then(() => setArticuloForm(INITIAL_STATE))  
+        }
+        setModal(false)
+        setArticuloEdit(false)
+        edit && setEdit(!edit)
     }
     return(
         <form onSubmit={formManufacturadoSubmit}>
-            <h1>Nuevo Plato</h1>
-            <label>Rubro:<select className={select} name='rubro' onChange={handlerManufacturado} defaultValue={articuloForm['rubro']}>
+            <h1>{titulo}</h1>
+            <label>Rubro:<select className={select} name='rubro' onChange={handlerManufacturado} defaultValue={articulo?.rubro ?? articuloForm['rubro']}>
                 <option value='pizza'>Pizzas</option>
                 <option value='empanada'>Empanadas</option>
                 <option value='lomo'>Lomos</option>
@@ -48,7 +62,7 @@ export default function FormArticuloManufacturado({token, setModal}){
             <label>Precio venta:<input type='number' name='precioVenta' placeholder='Precio de venta...' onChange={handlerManufacturado} value={articuloForm['precioVenta']}></input></label>
             <label>Imagen:<input type='file' className={select} name='imagen' id='imagen' onChange={handlerImage}></input></label>
             <label>Tiempo estimado de cocina (minutos):<input type='number' name='tiempoEstimadoCocina' placeholder='Tiempo de cocina...' onChange={handlerManufacturado} value={articuloForm['tiempoEstimadoCocina']}></input></label>
-            <button>Agregar Plato</button>
+            <button>{botonSubmit}</button>
         </form>
     )
 }

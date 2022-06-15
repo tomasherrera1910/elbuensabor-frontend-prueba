@@ -7,7 +7,7 @@ import FormArticuloManufacturado from './FormArticuloManufacturado'
 import CardArticuloManufacturado from './CardArticuloManufacturado'
 
 import styles from '../../../styles/admin.module.css'
-const {container, addButton} = styles
+const {container, addButton, containerGrid} = styles
 
 export default function ArticulosManufacturados(){
     const {usuario} = useLocalStorage()
@@ -30,9 +30,11 @@ export default function ArticulosManufacturados(){
             <Modal onClose={modalHandler} modal={modal}>
                 <FormArticuloManufacturado token={usuario.token} setModal={setModal}/>
             </Modal>
+            <div className={containerGrid}>
             {articulos.map(articulo => (
                 <CardArticuloManufacturado key={articulo.id} articulo={articulo} token={usuario.token}/>
             ))}
+            </div>
         </div>
         :
         <NotFound/>

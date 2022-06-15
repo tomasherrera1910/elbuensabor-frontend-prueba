@@ -2,7 +2,8 @@ import {useEffect, useState} from 'react'
 import {useNavigate, Link, useMatch} from 'react-router-dom'
 
 import styles from '../styles/navbar.module.css'
-const {nav, navList, navListVisible, adminStyle} = styles
+import Cart from './Cart'
+const {nav, navList, navListVisible, adminStyle, navButton} = styles
 
 
 
@@ -31,7 +32,7 @@ export function Navbar (){
                         : '🔗 INICIAR SESIÓN'
     
     const  toggleHandler = () => {
-        const navList = document.querySelector('ul')
+        const navList = document.getElementById('navListToggle')
         navList.classList.toggle(navListVisible);
     }
     const sesionHandler = () => {
@@ -51,11 +52,12 @@ export function Navbar (){
             </Link>
             <section>
             {usuario && <h2>👤 {usuario.username}</h2>}
-            <button onClick={toggleHandler}>⚙</button>    
+            <Cart/>
+            <button onClick={toggleHandler} className={navButton}>⚙</button>    
             </section>
-            <ul className={navList}>
+            <ul className={navList} id='navListToggle'>
                 <li><Link to='/login' onClick={sesionHandler}>{buttonName}</Link></li>
-                <li><Link to='/'>🍕 MENÚS</Link></li>
+                <li><Link to='/menus'>🍕 MENÚS</Link></li>
                 <li><Link to={linkAddress}>🏠 DIRECCIONES</Link></li>
                 {usuario?.rol === 'admin' && <li><Link to='/admin' className={adminStyle}>👨‍💼 ADMIN</Link></li>}
             </ul>

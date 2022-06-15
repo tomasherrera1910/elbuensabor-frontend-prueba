@@ -2,6 +2,10 @@ export function getArticulosManufacturados(){
     return fetch(`http://localhost:3001/articulosManufacturados`)
            .then(response => response.json())
 }
+export function getOneArticuloManufacturado(id){
+    return fetch(`http://localhost:3001/articulosManufacturados/${id}`)
+           .then(response => response.json())
+}
 export function postArticulosManufacturados(articulo, token){
     return fetch(`http://localhost:3001/articulosManufacturados`,{
         method: 'POST',
@@ -12,6 +16,25 @@ export function postArticulosManufacturados(articulo, token){
         body: JSON.stringify(articulo)
     }).then(response => response.json())
 }
+export function putArticuloManufacturado(articuloId, token, articuloEdit){
+    return fetch(`http://localhost:3001/articulosManufacturados/${articuloId}`, {
+        method: 'PUT',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-type': 'application/json; charset=UTF-8'
+        },
+        body: JSON.stringify(articuloEdit)
+    }).then(response => response.json())   
+}
+export function deleteArticuloManufacturado(articuloId, token){
+    return fetch(`http://localhost:3001/articulosManufacturados/${articuloId}`,{
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    }).then(() => {})
+}
+//ARTICULOS MANUFACTURADOS DETALLE (INGREDIENTES DEL PLATO)
 export function postArticuloDetalle(idPlato, token, ingrediente){
     return fetch(`http://localhost:3001/articulosManuDetalle/${idPlato}`,{
         method: 'POST',

@@ -17,6 +17,7 @@
 .nav section{
     display:flex;
     align-items: center;
+    gap:12px;
 }
 .adminStyle{
     color: goldenrod;
@@ -29,7 +30,7 @@
 .nav h2{
     font-size: small;
 }
-.nav button{
+.navButton{
     background-color: #D03737;
     border:none;
     color: white;
@@ -70,6 +71,17 @@
 }
 
 @media (min-width:768px){
+    .navListVisible{
+        left: 60%;
+    }
+    .navList{
+        width: 40%;
+    }
+    .nav h2{
+        font-size: 24px;
+    }
+}
+@media (min-width:1024px){
     .navListVisible{
         left: 75%;
     }

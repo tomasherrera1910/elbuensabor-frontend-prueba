@@ -2,7 +2,7 @@
     margin: 4.5em 0.2em;
     padding:0;
     display:flex;
-    justify-content: center;
+    justify-content:center;
 }
 .adminOptions li{
     margin-bottom: 24px;
@@ -112,6 +112,12 @@
     border: none;
     cursor: pointer;
 }
+.containerGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 300px);
+    gap: 20px;
+    justify-content: center;
+  }
 .cardInsumos{
     border: solid 1px rgba(255, 255, 255, 0.5);
     padding: 16px;
@@ -155,6 +161,8 @@
 .cardManufacturados div ul li button{
     padding:0;
     margin-left: 4px;
+    background: red;
+    border:none;
 }
 .cardManufacturados form input{
     width: 100px;
@@ -163,5 +171,19 @@
 }
 .cardManufacturados form select{
     font-size: 12px;
-    
 }
+@media (min-width: 768px) {
+    .containerGrid {
+      width:768px;
+    }
+  }
+@media (min-width: 1024px) {
+.containerGrid {
+    width:1024px;
+}
+}
+@media (min-width: 1440px) {
+    .containerGrid {
+        width:1440px;
+    }
+    }  

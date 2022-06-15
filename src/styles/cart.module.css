@@ -1,0 +1,80 @@
+.cartButton button{
+    position:relative;
+    background-color: #00a000;
+    border-radius: 9999px;
+    font-size: 24px;
+    padding: 6px 6px;
+    border:none;
+    cursor:pointer;
+    border:1px solid #000;
+    transition: ease 0.4s;
+}
+.cartButton button:hover{
+    background-color: #00f000;
+    font-size: 26px;
+}
+.cartButton div{
+    position: absolute;
+    top: 3em;
+    width:16px;
+    height: 16px;
+    background-color: #aa0000;
+    border:1px solid #000;
+    border-radius: 100%;
+    text-align:center;
+}
+.cartButton div p{
+    position: absolute;
+    top:-1.2em;
+    right:0.2em;
+}
+.cartList{
+    display: flex;
+    align-items: center;
+    background-color: #191616;
+    list-style:none;
+    gap: 36px;
+    padding: 0;
+    flex-direction: column;
+    position: fixed;
+    top: 4em;
+    width: 100%;
+    padding: 20px 0;
+    height: auto;
+    overflow-y: auto;
+    left: 100%;
+    transition: left 0.3s;
+}
+.cartList ul{
+    padding: 0;
+    margin:0;
+}
+.cartList ul li{
+    display: flex;
+    list-style: none;
+    padding:16px;
+    border-bottom: solid 1px rgba(255,255,255,0.4);
+}
+.cartList ul li span{
+    color: rgba(255,255,255,0.4);
+
+}
+.cartListVisible{
+    left: 0;
+}
+@media (min-width:768px){
+    .cartListVisible{
+        left: 60%;
+    }
+    .cartList{
+        width: 40%;
+    }
+}
+@media (min-width:1024px){
+    .cartListVisible{
+        left: 75%;
+    }
+    .cartList{
+        width: 25%;
+    }
+}

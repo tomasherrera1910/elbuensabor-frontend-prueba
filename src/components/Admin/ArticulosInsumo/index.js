@@ -7,7 +7,7 @@ import FormArticuloInsumo from './FormArticuloInsumo';
 import { Modal } from '../../Modal';
 
 import styles from '../../../styles/admin.module.css'
-const {container, buttonFilter, buttons, addButton, refreshButton, buttonsContainer} = styles
+const {container, buttonFilter, buttons, addButton, refreshButton, buttonsContainer, containerGrid} = styles
 
 export default function ArticulosInsumo(){
     const {usuario} = useLocalStorage()
@@ -48,6 +48,7 @@ export default function ArticulosInsumo(){
                 <Modal onClose={modalHandler} modal={modal}>
                 <FormArticuloInsumo token={usuario.token} setModal={setModal}/>
                 </Modal>
+                <div className={containerGrid}>
                 {
                     articulos.map(articulo => (
                         <CardArticuloInsumo key={articulo.id}
@@ -56,6 +57,7 @@ export default function ArticulosInsumo(){
                                             />
                 ))
                 }
+                </div>
             </div>
             :
             <NotFound/>

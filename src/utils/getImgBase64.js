@@ -1,6 +1,6 @@
-export default function getImgBase64(){
+export default function getImgBase64(file){
     return new Promise(function(resolve) {
-    let file = document.getElementById('imagen').files[0]
+        
     if(!file) return null
     //Este objeto FileReader te permite leer archivos
     let reader = new FileReader()
