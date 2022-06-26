@@ -163,6 +163,7 @@
     margin-left: 4px;
     background: red;
     border:none;
+    cursor:pointer;
 }
 .cardManufacturados form input{
     width: 100px;

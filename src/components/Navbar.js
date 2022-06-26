@@ -1,5 +1,6 @@
-import {useEffect, useState} from 'react'
-import {useNavigate, Link, useMatch} from 'react-router-dom'
+import {useEffect} from 'react'
+import {Link, useMatch} from 'react-router-dom'
+import useLocalStorage from '../hooks/useLocalStorage'
 
 import styles from '../styles/navbar.module.css'
 import Cart from './Cart'
@@ -8,8 +9,7 @@ const {nav, navList, navListVisible, adminStyle, navButton} = styles
 
 
 export function Navbar (){
-    const [usuario, setUsuario] = useState(JSON.parse(window.localStorage.getItem('userLoggedBuenSabor')))
-    const navigate = useNavigate()
+    const {usuario, setUsuario, sesionHandler} = useLocalStorage()
     let matchHome = useMatch('/')
     let matchLogin = useMatch('/login')
     let matchCreateAccount = useMatch('/createAccount')
@@ -17,7 +17,7 @@ export function Navbar (){
                                 : '/login'
     useEffect(() => {
         setUsuario(JSON.parse(window.localStorage.getItem('userLoggedBuenSabor')))
-    }, [matchHome])
+    }, [matchHome, setUsuario])
     useEffect(() => {
         const header = document.querySelector('header')
         if(matchLogin || matchCreateAccount){
@@ -27,7 +27,7 @@ export function Navbar (){
             header.style.display = 'block'
         }
     },[matchLogin, matchCreateAccount])
-    const buttonName = window.localStorage.getItem('userLoggedBuenSabor') 
+    const buttonName = usuario
                         ? '🔗 CERRAR SESIÓN'
                         : '🔗 INICIAR SESIÓN'
     
@@ -35,15 +35,6 @@ export function Navbar (){
         const navList = document.getElementById('navListToggle')
         navList.classList.toggle(navListVisible);
     }
-    const sesionHandler = () => {
-        if(window.localStorage.getItem('userLoggedBuenSabor')){
-        window.localStorage.removeItem('userLoggedBuenSabor')
-        }
-        else{
-            navigate('/login')
-        }
-    }
-    
     return(
         <header>
             <nav className={nav}>

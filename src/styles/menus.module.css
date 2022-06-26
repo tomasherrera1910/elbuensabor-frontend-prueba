@@ -1,9 +1,37 @@
 .container{
     margin: 4.5em 0.1em;
+}
+.grid{
     display: grid;
     grid-template-columns: repeat(auto-fill, 225px);
     justify-content: center;
     gap:24px;
+}
+.gridBebidas{
+    margin-top: 12px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 225px);
+    justify-content: center;
+    gap:24px;
+}
+.linkBebida{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #19216D;
+    color: #fff;
+    width: fit-content;
+    text-decoration: none;
+    padding: 4px 8px;
+    border-radius: 24px;
+    cursor: pointer;
+    margin-bottom: 16px;
+}
+.cardBebida{
+    display:flex;
+    flex-direction: column;
+    max-width: 280px;
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
+    border: solid 1px rgba(200, 200, 200, 0.5);
 }
 .cardMenu{
     display:flex;
@@ -64,9 +92,63 @@
     cursor:pointer;
     font-size: 10px;
 }
-
+.buttonCancel{
+    margin: 12px 0;
+    margin-top: 8px;
+    border:none;
+    padding: 8px 4px;
+    width: 100px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: #a00000;
+    color: #fff;
+    cursor:pointer;
+    font-size: 10px;
+}
+.buttonBebidaBuy{
+    margin-top: 8px;
+    border:none;
+    padding: 8px 4px;
+    width: 100%;
+    border-bottom-left-radius: 64px;
+    border-bottom-right-radius: 64px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: #00a000;
+    color: #fff;
+    cursor:pointer;
+    font-size: 10px;
+}
+.buttonBebidaCancel{
+    margin-top: 8px;
+    border:none;
+    padding: 8px 4px;
+    width: 100%;
+    border-bottom-left-radius: 64px;
+    border-bottom-right-radius: 64px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: #a00000;
+    color: #fff;
+    cursor:pointer;
+    font-size: 10px;
+}
+.cardBebida h3{
+    text-align: center;
+    text-transform: uppercase;
+}
+.cardBebida p{
+    margin:0;
+    padding: 4px 16px;
+}
+.cardMenu span,
+.cardBebida span{
+    font-size: 10px;
+    color:#a00000;
+    display:block;
+}
 @media (min-width: 1024px) {
-    .container{
+    .grid{
         grid-template-columns: repeat(auto-fill, 450px); 
     }
     .cardMenu {

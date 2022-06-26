@@ -17,7 +17,7 @@ export default function FormIngredientesArticulo({ingredientes, id, token}){
     useEffect(() => {
         getArticulosInsumo()
         .then(data => setIngredientesInsumo(data.filter(articulo => articulo.baja === false && articulo.rubro === 'ingredientes')))
-    },[])
+    },[ingredientes])
     useEffect(() => {
         if(idIngrediente){
             getOneArticuloInsumo(idIngrediente)

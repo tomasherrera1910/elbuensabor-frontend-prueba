@@ -23,7 +23,15 @@
     color: goldenrod;
     text-decoration: none;
 }
-.nav a:not(.adminStyle){
+.iniciarSesion{
+    text-align:center;
+    padding: 8px;
+}
+.iniciarSesion a{
+    color: #147feb;
+    text-decoration: underline;
+}
+.nav a:not(.adminStyle, .iniciarSesion a){
     text-decoration: none;
     color: #fff;
 }

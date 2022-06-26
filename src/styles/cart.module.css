@@ -26,12 +26,12 @@
 .cartButton div p{
     position: absolute;
     top:-1.2em;
-    right:0.2em;
+    right:5px;
 }
 .cartList{
     display: flex;
     align-items: center;
-    background-color: #191616;
+    background-color: #232323;
     list-style:none;
     gap: 36px;
     padding: 0;
@@ -40,7 +40,7 @@
     top: 4em;
     width: 100%;
     padding: 20px 0;
-    height: auto;
+    height: 400px;
     overflow-y: auto;
     left: 100%;
     transition: left 0.3s;
@@ -51,9 +51,29 @@
 }
 .cartList ul li{
     display: flex;
+    gap: 8px;
+    align-items: center;
     list-style: none;
     padding:16px;
     border-bottom: solid 1px rgba(255,255,255,0.4);
+}
+.masMenosButtons{
+    display: flex;
+    flex-direction: column;
+}
+.masMenosButtons p {
+    margin:0;
+}
+.masMenosButtons button {
+    border: none;
+    color:#fff;
+    cursor:pointer;
+}
+.masButton{
+    background-color: #19216D;
+}
+.menosButton{
+    background-color: #D03737;
 }
 .cartList ul li span{
     color: rgba(255,255,255,0.4);
@@ -61,6 +81,21 @@
 }
 .cartListVisible{
     left: 0;
+}
+.totalStyle{
+    margin-bottom: 12px;
+    margin-left: 12px;
+}
+.continuarPedido{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #00a000;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 24px;
+    border:none;
+    cursor:pointer;
+    margin-bottom: 12px;
+    margin-left: 12px;
 }
 @media (min-width:768px){
     .cartListVisible{

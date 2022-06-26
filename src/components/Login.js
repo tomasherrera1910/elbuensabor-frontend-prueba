@@ -4,33 +4,32 @@ import validateLogin from '../utils/login'
 import handlerChangeForm from '../utils/handlers/handlerChangeForm'
 
 import styles from '../styles/form.module.css'
+import useLocalStorage from '../hooks/useLocalStorage'
 const {container, firstButton, campoInvalido} = styles
 
 export function Login(){
-    const [usuario,setUsuario] = useState({
+    const [usuarioForm, setUsuarioForm] = useState({
         email: '',
         clave: ''
     })
-    const [response, setResponse] = useState(JSON.parse(window.localStorage.getItem('userLoggedBuenSabor')) || '')
-    const navigate  = useNavigate()
-    
+    const {usuario, setUsuario} = useLocalStorage()
+    const navigate = useNavigate()
     useEffect(() => {
-        if(response['token']){
+        if(usuario?.token){
             if(!window.localStorage.getItem('userLoggedBuenSabor')){
-            window.localStorage.setItem('userLoggedBuenSabor', JSON.stringify(response))
+            window.localStorage.setItem('userLoggedBuenSabor', JSON.stringify(usuario))
             }
             navigate('/')
         } 
-    },[response, navigate])
-    
+    },[usuario, navigate])
     const handleChange = e => {
-        handlerChangeForm(e, setUsuario, usuario)
+        handlerChangeForm(e, setUsuarioForm, usuarioForm)
     }
     const handlerLogin = e => {
         e.preventDefault()
-        validateLogin(usuario)
-        .then(setResponse)
-        setUsuario({
+        validateLogin(usuarioForm)
+        .then(setUsuario)
+        setUsuarioForm({
             email:'',
             clave:''
         })
@@ -43,12 +42,12 @@ export function Login(){
             <section>
             <form onSubmit={handlerLogin}>
                 <p>
-                <input type='text' placeholder="Correo electrónico..." name='email' value={usuario['email']} onChange={handleChange}/>
+                <input type='text' placeholder="Correo electrónico..." name='email' value={usuarioForm['email']} onChange={handleChange}/>
                 </p>
                 <p>
-                <input type='password' placeholder="Contraseña..." name='clave' value={usuario['clave']} onChange={handleChange}/>
+                <input type='password' placeholder="Contraseña..." name='clave' value={usuarioForm['clave']} onChange={handleChange}/>
                 </p>
-                {response['error'] && <span className={campoInvalido}>❌{response['error']}.</span>}
+                {usuario?.error && <span className={campoInvalido}>❌{usuario?.error}.</span>}
                 <button type='submit' className={firstButton}>Ingresar</button>
                 <Link to='/createAccount'>
                 <button>Crea tu cuenta</button>

@@ -44,12 +44,13 @@ export function CreateAccount(){
                 <p><input type='text' name='apellido' placeholder='Apellido...' value={usuario.apellido} onChange={handleChange}/></p>
                 <p><input type='text' name='username' placeholder='Nombre de usuario...' value={usuario.username} onChange={handleChange}/></p>
                 {response['username'] && <span className={campoInvalido}>❌El usuario "{response['username']}" ya existe</span>}
-                
+             
                 <p><input type='email' name='email' placeholder='Email...' value={usuario.email} onChange={handleChange}/></p>
                 {response['email'] && <span className={campoInvalido}>❌El mail "{response['email']}" ya tiene una cuenta asociada</span>}
                 
                 <p><input type='password' name='clave' placeholder='Contraseña...' value={usuario.clave} onChange={handleChange}/></p>
                 <p><input type='number' name='telefono' placeholder='Télefono...' value={usuario.telefono} onChange={handleChange}/></p>
+            
                 <button type='submit'>Crear Cuenta</button>
                 {response['message'] && <span className={cuentaCreada}>✔{response['message']}</span>}
                 {response['missingField'] && <span className={campoInvalido}>❌{response['missingField']}</span>}
