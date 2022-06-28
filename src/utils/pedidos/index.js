@@ -28,3 +28,19 @@ export function deletePedidoDetalle(pedidoDetalleId){
         method: 'DELETE'
     }).then(() => {})
 }
+
+//PEDIDOS
+export function getPedido(id){
+    return fetch(`http://localhost:3001/pedidos/${id}`)
+        .then(response => response.json())
+}
+export function postPedido(token, pedido){
+    return fetch(`http://localhost:3001/pedidos`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-type': 'application/json; charset=UTF-8'
+        },
+        body: JSON.stringify(pedido)
+    }).then(response => response.json())
+}

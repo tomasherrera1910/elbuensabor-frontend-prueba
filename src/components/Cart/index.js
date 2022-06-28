@@ -36,13 +36,13 @@ export default function Cart(){
                 </ul>
                 <p className={totalStyle}>Total: ${total}</p>
                 {total > 0 &&
-                <Link to='/pedido' className={continuarPedido}>CONTINUAR CON EL PEDIDO 🍜</Link>
+                <Link to='/pedido' className={continuarPedido} onClick={toggleHandler}>CONTINUAR CON EL PEDIDO 🍜</Link>
                 }
                 </div>
                 :
                 <div className={iniciarSesion}>
                 <p>¡Debe Iniciar Sesión antes de hacer un pedido!</p>
-                <Link to='/login'>Haz click aquí para iniciar sesión</Link>
+                <Link to='/login' onClick={toggleHandler}>Haz click aquí para iniciar sesión</Link>
                 </div>    
             }
         </section>

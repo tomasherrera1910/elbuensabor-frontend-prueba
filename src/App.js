@@ -8,6 +8,7 @@ import {Address} from './components/Address'
 import {Menus} from './components/Menus'
 import MenuBebidas from './components/Menus/MenuBebidas'
 import { Pedido } from './components/Pedido'
+import SusPedidos from './components/Pedido/SusPedidos'
 import {AdminLandingPage} from './components/Admin'
 import RoleManager from './components/Admin/RoleManager'
 import ArticulosInsumo from './components/Admin/ArticulosInsumo'
@@ -30,6 +31,7 @@ function App() {
       <Route path='/menus' element={<Menus/>}/>
       <Route path='/bebidas' element={<MenuBebidas/>}/>
       <Route path='/pedido' element={<Pedido/>}/>
+            <Route path='/pedido/susPedidos' element={<SusPedidos/>}/>
       <Route path='/admin' element={<AdminLandingPage/>}/>
             <Route path='/admin/users' element={<RoleManager/>}/>
             <Route path='/admin/articulosInsumo' element={<ArticulosInsumo/>}/>

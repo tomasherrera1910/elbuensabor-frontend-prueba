@@ -35,6 +35,10 @@ export function Navbar (){
         const navList = document.getElementById('navListToggle')
         navList.classList.toggle(navListVisible);
     }
+    const loginButtonClick = () => {
+        sesionHandler()
+        toggleHandler()
+    }
     return(
         <header>
             <nav className={nav}>
@@ -47,10 +51,11 @@ export function Navbar (){
             <button onClick={toggleHandler} className={navButton}>⚙</button>    
             </section>
             <ul className={navList} id='navListToggle'>
-                <li><Link to='/login' onClick={sesionHandler}>{buttonName}</Link></li>
-                <li><Link to='/menus'>🍕 MENÚS</Link></li>
-                <li><Link to={linkAddress}>🏠 DIRECCIONES</Link></li>
-                {usuario?.rol === 'admin' && <li><Link to='/admin' className={adminStyle}>👨‍💼 ADMIN</Link></li>}
+                <li><Link to='/login' onClick={loginButtonClick}>{buttonName}</Link></li>
+                <li><Link to='/menus' onClick={toggleHandler}>🍕 MENÚS</Link></li>
+                <li><Link to='/pedido/susPedidos' onClick={toggleHandler}>🍔 SUS PEDIDOS</Link></li>
+                <li><Link to={linkAddress} onClick={toggleHandler}>🏠 DIRECCIONES</Link></li>
+                {usuario?.rol === 'admin' && <li><Link to='/admin' className={adminStyle} onClick={toggleHandler}>👨‍💼 ADMIN</Link></li>}
             </ul>
             </nav>
         </header>
