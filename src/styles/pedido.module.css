@@ -68,16 +68,54 @@
 .pedidosCard h2{
     margin-top:6px;
 }
-.pedidosCard p span:not(.pedidoEnRevision, .pedidoEnCocina, .pedidoFinalizado){
+.pedidosCard p span:not(.warningAlert, .pedidoEnCocina, .successAlert){
     font-size: 14px;
     color: #666;
 }
-.pedidoEnRevision{
+.warningAlert{
     color:#D03737;
+    font-weight: 600;
 }
 .pedidoEnCocina{
-    color:#19216D;
+    color:#1a28a7;
+    font-weight: 600;
 }
-.pedidoFinalizado{
-    color:#2d6e2d;
+.successAlert{
+    color:#2b962b;
+    font-weight: 600;
+}
+.mercadopagoButton{
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    gap:0.5em;
+    background-color: #fff;
+    cursor:pointer;
+    border-radius: 16px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    color: #009ee3;
+    transition:ease 1s;
+    outline: none;
+    border:none;
+}
+.mercadopagoButton:hover {
+    color: #fff;
+    background-color: #009ee3;
+}
+.mercadopagoButton img{
+    width: 5em;
+    border-radius: 16px;
+}
+.showButton{
+    cursor:pointer;
+    border-radius: 16px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    color: #fff;
+    border:none;
+    outline: none;
+    transition:ease 0.5s;
+    margin-bottom: 8px;
+    padding: 0.8em 0.2em;
 }

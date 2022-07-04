@@ -15,6 +15,8 @@ import ArticulosInsumo from './components/Admin/ArticulosInsumo'
 import ArticulosManufacturados from './components/Admin/ArticulosManufacturados'
 import CartItems from './context/CartItems'
 import UserLogged from './context/UserLogged'
+import { Cajero } from './components/Cajero'
+import { Cocinero } from './components/Cocinero'
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
             <Route path='/admin/users' element={<RoleManager/>}/>
             <Route path='/admin/articulosInsumo' element={<ArticulosInsumo/>}/>
             <Route path='/admin/articulosManufacturados' element={<ArticulosManufacturados/>}/>
+      <Route path='/cajero' element={<Cajero/>}/>
+      <Route path='/cocinero' element={<Cocinero/>}/>
     </Routes>
     </CartItems>
     </UserLogged>

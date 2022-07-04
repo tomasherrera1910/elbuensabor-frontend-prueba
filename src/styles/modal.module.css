@@ -35,7 +35,8 @@
     transition: 0.3s;
 }
 .modalSize form input,
-.modalSize form button {
+.modalSize form button,
+.modalSize form textarea {
     color: #fff;
     font-size: 1em;
     padding: 0.5em;
@@ -44,8 +45,13 @@
     background: #000;
     border-bottom: solid 2px #19216D; 
 }
-.modalSize form input:focus{
+.modalSize form input:focus,
+.modalSize form textarea:focus{
     border-bottom: solid 2px #D03737; 
+}
+.modalSize form textarea{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 14px;
 }
 .modalSize form button{
     background-color: #19216D;
@@ -54,4 +60,9 @@
     margin-bottom: 24px;
     height: 2.5em;
     width: 100%;
+    transition: ease 0.5s;
+}
+.modalSize form button:hover{
+    background-color: #D03737;
+    border:none;
 }

@@ -4,7 +4,7 @@ import useLocalStorage from '../hooks/useLocalStorage'
 
 import styles from '../styles/navbar.module.css'
 import Cart from './Cart'
-const {nav, navList, navListVisible, adminStyle, navButton} = styles
+const {nav, navList, navListVisible, adminStyle, cajeroStyle, cocineroStyle, navButton} = styles
 
 
 
@@ -15,6 +15,8 @@ export function Navbar (){
     let matchCreateAccount = useMatch('/createAccount')
     const linkAddress = usuario ? '/address'
                                 : '/login'
+    const linkPedidos = usuario ? '/pedido/susPedidos'
+                                : '/login'                            
     useEffect(() => {
         setUsuario(JSON.parse(window.localStorage.getItem('userLoggedBuenSabor')))
     }, [matchHome, setUsuario])
@@ -53,9 +55,11 @@ export function Navbar (){
             <ul className={navList} id='navListToggle'>
                 <li><Link to='/login' onClick={loginButtonClick}>{buttonName}</Link></li>
                 <li><Link to='/menus' onClick={toggleHandler}>🍕 MENÚS</Link></li>
-                <li><Link to='/pedido/susPedidos' onClick={toggleHandler}>🍔 SUS PEDIDOS</Link></li>
+                <li><Link to={linkPedidos} onClick={toggleHandler}>🍔 SUS PEDIDOS</Link></li>
                 <li><Link to={linkAddress} onClick={toggleHandler}>🏠 DIRECCIONES</Link></li>
                 {usuario?.rol === 'admin' && <li><Link to='/admin' className={adminStyle} onClick={toggleHandler}>👨‍💼 ADMIN</Link></li>}
+                {(usuario?.rol === 'admin' || usuario?.rol === 'cajero') && <li><Link to='/cajero' className={cajeroStyle} onClick={toggleHandler}>📠 CAJERO</Link></li>}
+                {(usuario?.rol === 'admin' || usuario?.rol === 'cocinero') && <li><Link to='/cocinero' className={cocineroStyle} onClick={toggleHandler}>👨‍🍳 COCINERO</Link></li>}
             </ul>
             </nav>
         </header>

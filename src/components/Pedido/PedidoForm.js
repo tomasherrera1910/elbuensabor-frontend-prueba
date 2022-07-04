@@ -35,7 +35,6 @@ export default function PedidoForm({pedidoInfo, setPedidoInfo}){
         }
     },[envioState, displayEfectivo])
     useEffect(() => {
-        console.log(pedidoInfo)
         if(pedidoInfo.metodoPago.envio === 'Envío a domicilio' && !pedidoInfo.domicilio){
             setDisplayMissAddress({display:'block', color:'red'})
         }
@@ -82,7 +81,7 @@ export default function PedidoForm({pedidoInfo, setPedidoInfo}){
                  {((envioState.envio === 'Envío a domicilio' && direcciones.length === 0) || direccion === '') &&
                         <p>Para asignar un domicilio a su cuenta, <Link to='/address'>haga click aquí</Link></p>
                  }
-                <h3>Método:</h3>
+                <h3>Método de pago:</h3>
                 <label style={displayEfectivo}><input type='radio' name='metodoPago' checked={envioState.metodoDePago === 'Efectivo'} value='Efectivo' onClick={metodoPagoClickHandler} onChange={() => {}}/>Pago en efectivo</label>
                 <label><input type='radio' name='metodoPago' checked={envioState.metodoDePago === 'Mercado Pago'} value='Mercado Pago' onClick={metodoPagoClickHandler} onChange={() => {}}/>Mercado Pago</label> 
                 <button type='button' onClick={realizarPedidoClick} className={realizarPedido}>Realizar pedido</button>

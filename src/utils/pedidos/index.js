@@ -30,10 +30,23 @@ export function deletePedidoDetalle(pedidoDetalleId){
 }
 
 //PEDIDOS
-export function getPedido(id){
-    return fetch(`http://localhost:3001/pedidos/${id}`)
+export function getPedidoXusuario(id){
+    return fetch(`http://localhost:3001/pedidos/usuario/${id}`)
         .then(response => response.json())
 }
+
+export function getPedidos(token, estado){
+    return fetch(`http://localhost:3001/pedidos/${estado}`, {
+        headers: {
+            'Authorization': `Bearer ${token}`,
+        }
+    }).then(response => response.json())
+}
+export function getPedidoStock(pedidoId){
+    return fetch(`http://localhost:3001/pedidos/stockPedido/${pedidoId}`)
+            .then(response => response.json())
+}
+
 export function postPedido(token, pedido){
     return fetch(`http://localhost:3001/pedidos`, {
         method: 'POST',
@@ -42,5 +55,16 @@ export function postPedido(token, pedido){
             'Content-type': 'application/json; charset=UTF-8'
         },
         body: JSON.stringify(pedido)
+    }).then(response => response.json())
+}
+
+export function putPedido(token, pedidoId, data){
+    return fetch(`http://localhost:3001/pedidos/${pedidoId}`, {
+        method: 'PUT',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-type': 'application/json; charset=UTF-8'
+        },
+        body: JSON.stringify(data)
     }).then(response => response.json())
 }

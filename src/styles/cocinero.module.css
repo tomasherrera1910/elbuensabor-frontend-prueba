@@ -1,0 +1,7 @@
+.cocineroCard{
+   padding: 4px 4px 0 4px;
+   width: 300px;
+   min-height: fit-content;
+   box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.3), 0 6px 20px 0 rgba(255, 255, 255, 0.2);
+   margin-bottom: 1em;
+}

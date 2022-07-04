@@ -23,6 +23,14 @@
     color: goldenrod;
     text-decoration: none;
 }
+.cajeroStyle{
+    color: greenyellow;
+    text-decoration: none;
+}
+.cocineroStyle{
+    color: #0a4e92;
+    text-decoration: none;
+}
 .iniciarSesion{
     text-align:center;
     padding: 8px;
@@ -31,7 +39,7 @@
     color: #147feb;
     text-decoration: underline;
 }
-.nav a:not(.adminStyle, .iniciarSesion a){
+.nav a:not(.adminStyle, .cajeroStyle, .cocineroStyle, .iniciarSesion a){
     text-decoration: none;
     color: #fff;
 }
