@@ -119,3 +119,14 @@
     margin-bottom: 8px;
     padding: 0.8em 0.2em;
 }
+
+.buttonCajeroChangePedido{
+    background: none;
+    border: none;
+    outline: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:larger;
+    color:#009ee3;
+    text-decoration: underline;
+    margin-bottom: 0.5em;
+}

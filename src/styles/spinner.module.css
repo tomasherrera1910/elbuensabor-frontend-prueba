@@ -1,7 +1,13 @@
+.loaderContainer{
+  display:flex;
+  width:100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
 .loader {
-    justify-self: center;
-    align-self: center;
-    border: 10px solid #111;
+    border: 10px solid #222;
     border-top: 10px solid #D03737;
     border-radius: 50%;
     width: 80px;

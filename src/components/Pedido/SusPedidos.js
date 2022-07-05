@@ -16,13 +16,16 @@ export default function SusPedidos(){
                                                    : {text:'Mostrar pedidos finalizados y rechazados',style:{backgroundColor:"#19216D"}, estado: 'pendientes'}
     useEffect(() => {
         if(!mostrarPedidosFinalizados){
+            setIsLoading(true)
             getPedidoXusuario(usuario.id)
-            .then(data => setPedidos(data.reverse().filter(pedido => pedido.estado === 'En revisión...' || pedido.estado === 'En cocina...')))
-            .finally(setIsLoading(false))
+            .then(data => setPedidos(data.reverse().filter(pedido => pedido.estado === 'En revisión...' || pedido.estado === 'En cocina...' || pedido.estado === 'Finalizado' || pedido.estado === 'En camino...')))
+            .finally(() => setIsLoading(false))
         }
         else{
+            setIsLoading(true)
             getPedidoXusuario(usuario.id)
-            .then(data => setPedidos(data.reverse().filter(pedido => pedido.estado === 'Finalizado' || pedido.estado === 'RECHAZADO')))
+            .then(data => setPedidos(data.reverse().filter(pedido => pedido.estado === 'FACTURADO' || pedido.estado === 'RECHAZADO')))
+            .finally(() => setIsLoading(false))
         }
     },[mostrarPedidosFinalizados, usuario.id])
     

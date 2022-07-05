@@ -33,9 +33,11 @@ export default function SuPedidoCard({pedido, token}){
                     {pedido.mensaje && <p><span>Motivo:</span><span className={warningAlert}>{pedido.mensaje}</span></p>}
                     {pedido.estado === 'En revisión...' && <p><span>Estado:</span><span className={warningAlert}>Su pedido se esta procesando...</span></p>}
                     {pedido.estado === 'En cocina...' && <p><span>Estado:</span><span className={pedidoEnCocina}>Su pedido está siendo preparado...</span></p>}
-                    {pedido.estado === 'Finalizado' && <p><span>Estado:</span><span className={successAlert}>Su pedido ya está listo!</span></p>}
+                    {(pedido.estado === 'Finalizado' && pedido.tipoEnvio === 'Retiro en el local') && <p><span>Estado:</span><span className={successAlert}>Su pedido ya está listo para retirar!</span></p>}
+                    {(pedido.estado === 'Finalizado' && pedido.tipoEnvio === 'Envío a domicilio') && <p><span>Estado:</span><span className={successAlert}>Su pedido ya salió de la cocina!</span></p>}
+                    {pedido.estado === 'En camino...' && <p><span>Estado:</span><span className={successAlert}>Su pedido está en camino 🛵!</span></p>}
+                    {pedido.horaEstimadaLlegada && <p><span>Hora Estimada de llegada:</span> {pedido.horaEstimadaLlegada}</p>}
                     <p><span>Fecha:</span> {pedido.fecha}</p>
-                    {pedido.tiempoEstimadoDeEspera > 0 && <p><span>Tiempo estimado de espera:</span> {Math.round(pedido.tiempoEstimadoDeEspera)} minutos <span>(partiendo del campo fecha)</span></p>}
                     <p><span>Cliente:</span> {pedido.user.nombre} {pedido.user.apellido}</p>
                     <p><span>Teléfono:</span> {pedido.user.telefono}</p>
                     <p><span>Envío:</span> {pedido.tipoEnvio}</p>

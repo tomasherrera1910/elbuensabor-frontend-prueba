@@ -4,22 +4,26 @@ import {Modal} from '../Modal'
 import Spinner from '../Spinner' 
 
 import styles from '../../styles/cajero.module.css'
-const {cajeroCard, pagoPendiente, pagoRealizado, stockCard, stockSuficiente, stockInsuficiente, buttonAceptado, buttonRechazado, buttons} = styles
+const {cajeroCard, pagoPendiente, pagoRealizado, stockCard, stockSuficiente, stockInsuficiente, buttonAceptado, buttonRechazado, buttons, spinner} = styles
 export default function PedidosPendientesCard({pedido, token, setPedidos}){
     const [stockPedido, setStockPedido] = useState([])
     const [isLoading, setLoading] = useState(true)
+    const [kitchenLoader, setKitchenLoader] = useState(false)
     useEffect(() => {
         getPedidoStock(pedido.id)
         .then(setStockPedido)
-        .finally(setLoading(false))
+        .finally(() => setLoading(false))
     },[pedido.id])
     
     const pedidoACocinaClick = () => {
+        setKitchenLoader(true)
         putPedido(token, pedido.id, {estado:'En cocina...'})
         .then(() => {
                 getPedidos(token, 'pendientes')
-                .then(setPedidos)})
+                .then(setPedidos)
+                .finally(() => setKitchenLoader(false))})
     }
+
     const [modal, setModal] = useState(false)
     const [mensajeRechazo, setMensajeRechazo] = useState('')
     const rechazarPedidoClick = () => {
@@ -27,13 +31,20 @@ export default function PedidosPendientesCard({pedido, token, setPedidos}){
     }
     const rechazarPedidoSubmit = e => {
         e.preventDefault()
+        setKitchenLoader(true)
         putPedido(token, pedido.id, {estado:'RECHAZADO', mensaje:mensajeRechazo})
         .then(() => {
                 getPedidos(token, 'pendientes')
-                .then(setPedidos)})
+                .then(setPedidos)
+                .finally(() => setKitchenLoader(false))})
     }
     return(
         <div className={cajeroCard}>
+            {kitchenLoader
+                ?   
+            <Spinner/>
+                :
+            <>
             <ul>
                 <li>Pedido fecha: {pedido.fecha}</li>
                 <li>Cliente: {pedido.user.nombre} {pedido.user.apellido}</li>
@@ -42,7 +53,7 @@ export default function PedidosPendientesCard({pedido, token, setPedidos}){
                 {(pedido.metodoPago === 'Mercado Pago' && pedido.estadoMercadoPago !== 'approved') && <p className={pagoPendiente}>Pedido NO pagado</p>}
                 </li>
                 {isLoading 
-                ? <li><Spinner/></li>
+                ? <li className={spinner}><Spinner/></li>
                 :
                 <li>
                     {stockPedido.length > 0 && <h3>Stock</h3>}
@@ -63,6 +74,8 @@ export default function PedidosPendientesCard({pedido, token, setPedidos}){
             <button className={buttonAceptado} onClick={pedidoACocinaClick}>MANDAR A COCINA</button>
             <button className={buttonRechazado} onClick={rechazarPedidoClick}>RECHAZAR PEDIDO</button>
             </section>
+            </>    
+            }
             <Modal modal={modal} onClose={rechazarPedidoClick}>
                 <form onSubmit={rechazarPedidoSubmit}>
                 <label> Notificar al cliente porque su pedido fue rechazado:
