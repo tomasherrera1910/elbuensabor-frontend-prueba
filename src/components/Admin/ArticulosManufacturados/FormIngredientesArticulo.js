@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { getArticulosInsumo, getOneArticuloInsumo } from '../../../utils/articulosInsumo'
-import { postArticuloDetalle, deleteArticuloDetalle } from '../../../utils/articulosManufacturados'
+import { postArticuloDetalle, deleteArticuloDetalle, getOneArticuloManufacturado } from '../../../utils/articulosManufacturados'
 import handlerChangeForm from '../../../utils/handlers/handlerChangeForm'
 
+import Spinner from '../../Spinner'
 import styles from '../../../styles/admin.module.css'
 const {select, buttonFilter} = styles
 const INGREDIENTES_STATE={
@@ -14,6 +15,16 @@ export default function FormIngredientesArticulo({ingredientes, id, token}){
     const [ingredientesForm, setIngredientesForm] = useState(INGREDIENTES_STATE)
     const [unidadMedida, setUnidadMedida] = useState(undefined)
     const [idIngrediente, setIdIngrediente] = useState(null)
+    const [articulo, setArticulo] = useState({})
+    const [loading, setLoading] = useState(false)
+
+    useEffect(() => {
+        setLoading(true)
+        getOneArticuloManufacturado(id)
+        .then(setArticulo)
+        .finally(() => setLoading(false))
+    },[id])
+
     useEffect(() => {
         getArticulosInsumo()
         .then(data => setIngredientesInsumo(data.filter(articulo => articulo.baja === false && articulo.rubro === 'ingredientes')))
@@ -24,6 +35,7 @@ export default function FormIngredientesArticulo({ingredientes, id, token}){
             .then(setUnidadMedida)
         }
     },[idIngrediente])
+
     const handlerIngredientes = e => {
         handlerChangeForm(e, setIngredientesForm, ingredientesForm)
     }
@@ -35,20 +47,36 @@ export default function FormIngredientesArticulo({ingredientes, id, token}){
         e.preventDefault()
         postArticuloDetalle(id, token, ingredientesForm)
         .then(() => setIngredientesForm(INGREDIENTES_STATE))
+        .then(() => {
+            setLoading(true)
+            getOneArticuloManufacturado(id)
+            .then(setArticulo)
+            .finally(() => setLoading(false))
+        })
     }
-    const deleteIngredienteHandler = id => {
-        deleteArticuloDetalle(token, id)
+
+    const deleteIngredienteHandler = ingredienteId => {
+        deleteArticuloDetalle(token, ingredienteId)
+        .then(() => {
+            setLoading(true)
+            getOneArticuloManufacturado(id)
+            .then(setArticulo)
+            .finally(() => setLoading(false))
+        })
     }
     return(
-        <>
+        <article>
          <h2>Ingredientes:</h2>
-                <ul>
-                {ingredientes?.map(ingrediente => (
-                    <li key={ingrediente.id}>{ingrediente.nombre}: {ingrediente.cantidad}{ingrediente.unidadMedida}
-                    <button onClick={() => deleteIngredienteHandler(ingrediente.id)}>🗑</button>
-                    </li>
-                ))}
-                </ul>
+                {loading ? <Spinner/>
+                         :
+                            <ul>
+                            {articulo.ingredientes?.map(ingrediente => (
+                                <li key={ingrediente.id}>{ingrediente.nombre}: {ingrediente.cantidad}{ingrediente.unidadMedida}
+                                <button onClick={() => deleteIngredienteHandler(ingrediente.id)}>🗑</button>
+                                </li>
+                            ))}
+                            </ul>
+                }
             <form onSubmit={ingredienteSubmit}>
                 <select className={select} name='articuloInsumo' onChange={handlerArticuloInsumo} defaultValue={ingredientesForm['articuloInsumo']}>
                         <option value=''>-Ingrediente-</option>
@@ -59,6 +87,6 @@ export default function FormIngredientesArticulo({ingredientes, id, token}){
                 <input type='number' placeholder='Cantidad' name='cantidad' onChange={handlerIngredientes} value={ingredientesForm['cantidad']}/>{unidadMedida?.unidadMedida}
                 <button className={buttonFilter}>Agregar ingrediente</button>
             </form>
-        </>
+        </article>
     )
 }

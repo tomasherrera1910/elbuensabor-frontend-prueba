@@ -24,15 +24,16 @@ export function putArticuloManufacturado(articuloId, token, articuloEdit){
             'Content-type': 'application/json; charset=UTF-8'
         },
         body: JSON.stringify(articuloEdit)
-    }).then(response => response.json())   
+    })
+    .then(response => response.json())  
 }
-export function deleteArticuloManufacturado(articuloId, token){
+export function deleteArticuloManufacturado(articuloId, token, setArticulos, setLoading){
     return fetch(`http://localhost:3001/articulosManufacturados/${articuloId}`,{
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`
         }
-    }).then(() => {})
+    }).then(() => updateArticulosState(setArticulos, setLoading))
 }
 //ARTICULOS MANUFACTURADOS DETALLE (INGREDIENTES DEL PLATO)
 export function postArticuloDetalle(idPlato, token, ingrediente){
@@ -51,5 +52,13 @@ export function deleteArticuloDetalle(token, idArtDetalle){
         headers: {
             'Authorization': `Bearer ${token}`
         }
-    }).then(response => response.json())
+    })
+}
+
+//para setear los articulos en pantalla despues de agregarlos en la interfaz admin
+export function updateArticulosState(setArticulos, setLoading){
+        setLoading(true)
+        getArticulosManufacturados()
+        .then(data => setArticulos(data.filter(articulo => articulo.baja === false)))
+        .finally(() => setLoading(false))
 }

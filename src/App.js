@@ -13,6 +13,10 @@ import {AdminLandingPage} from './components/Admin'
 import RoleManager from './components/Admin/RoleManager'
 import ArticulosInsumo from './components/Admin/ArticulosInsumo'
 import ArticulosManufacturados from './components/Admin/ArticulosManufacturados'
+import RankingComidas from './components/Admin/RankingComidas'
+import RankingPedido from './components/Admin/RankingPedido'
+import Ingresos from './components/Admin/Ingresos'
+import Ganancias from './components/Admin/Ganancias'
 import CartItems from './context/CartItems'
 import UserLogged from './context/UserLogged'
 import { Cajero } from './components/Cajero'
@@ -38,6 +42,10 @@ function App() {
             <Route path='/admin/users' element={<RoleManager/>}/>
             <Route path='/admin/articulosInsumo' element={<ArticulosInsumo/>}/>
             <Route path='/admin/articulosManufacturados' element={<ArticulosManufacturados/>}/>
+            <Route path='/admin/rankingComidas' element={<RankingComidas/>}/>
+            <Route path='/admin/rankingPedidos' element={<RankingPedido/>}/>
+            <Route path='/admin/ingresos' element={<Ingresos/>}/>
+            <Route path='/admin/ganancias' element={<Ganancias/>}/>
       <Route path='/cajero' element={<Cajero/>}/>
       <Route path='/cocinero' element={<Cocinero/>}/>
     </Routes>

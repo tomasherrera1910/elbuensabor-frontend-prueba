@@ -22,7 +22,7 @@ export default function CardMenu({comida}){
     useEffect(() => {
         setTimeout(() => {
             setLoading(false)
-        },1000)
+        },250)
     },[])
     useEffect(() => {
         if(error){

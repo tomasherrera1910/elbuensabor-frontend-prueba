@@ -6,7 +6,7 @@ const CartItems = (props) => {
     
     const [cartState, setCartState] = useState([])
     const [total, setTotal] = useState(0)
-    
+    const [loading, setLoading] = useState(false)
     useEffect(() => {
         let calculoTotal = 0
         cartState.map(detalle => (
@@ -23,30 +23,37 @@ const CartItems = (props) => {
         setCartState([])
     }
     const cartDeleteItem = (id) => {
-          deletePedidoDetalle(id)
+          setLoading(true)
+          deletePedidoDetalle(id, setLoading)
           setCartState(cartState.filter(item => item.id !== id && !null))
     }
     const cartAddItem = (token, pedidoDetalle, setError) => {
+        setLoading(true)
         postPedidoDetalle(token, pedidoDetalle)
         .then(data => {
           if(data.error)
             setError(data)
           else  
           setCartState([...cartState, data])})
+         .finally(() => setLoading(false)) 
         
     }
     const moreButtonClick = (id, token, cantidad, i, setError) => {
+        setLoading(true)
         putPedidoDetalle(id, token, cantidad)
         .then(data => {
           if(data.error)
             setError(data)
           else  
           updateCantidad(data, i)})
+          .finally(() => setLoading(false))
     }
     const lessButtonClick = (id, token, cantidad, i) => {
       if(cantidad.cantidad > 0){
+          setLoading(true)
           putPedidoDetalle(id, token, cantidad)
           .then(data => updateCantidad(data, i))
+          .finally(() => setLoading(false))
       }
       if(cantidad.cantidad < 1){
           cartDeleteItem(id)
@@ -62,7 +69,8 @@ const CartItems = (props) => {
             moreButtonClick,
             lessButtonClick,
             cartAddItem,
-            cartDeleteItem
+            cartDeleteItem,
+            loading
           }}
         >
           {props.children}

@@ -124,9 +124,13 @@
     background: none;
     border: none;
     outline: none;
+    cursor:pointer;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size:larger;
     color:#009ee3;
     text-decoration: underline;
     margin-bottom: 0.5em;
+}
+.buttonCajeroChangePedido:hover{
+    opacity:0.7;
 }

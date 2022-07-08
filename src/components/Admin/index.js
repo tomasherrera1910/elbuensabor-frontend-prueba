@@ -13,9 +13,13 @@ export function AdminLandingPage(){
         ?
         <div className={container}>
             <ul className={adminOptions}>
-                <li><Link to='users'>🔹Asignación de roles de usuario 👨🏽‍🍳👨🏽‍💼🔹</Link></li>
-                <li><Link to='articulosInsumo'>🔹Catálogo de artículos insumo🧀🥚🔹</Link></li>
-                <li><Link to='articulosManufacturados'>🔹Administrar platos del restaurante🍔🍕🔹</Link></li>
+                <Link to='users'><li>🔹Asignación de roles de usuario 👨🏽‍🍳🔹</li></Link>
+                <Link to='articulosInsumo'><li>🔹Catálogo de artículos insumo🧀🔹</li></Link>
+                <Link to='articulosManufacturados'><li>🔹Administrar platos del restaurante🍕🔹</li></Link>
+                <Link to='rankingComidas'><li>🔹Ranking comidas más pedidas 🔝🔹</li></Link>
+                <Link to='rankingPedidos'><li>🔹Ranking usuarios con más Pedidos 🧘‍♂️🔹</li></Link>
+                <Link to='ingresos'><li>🔹Ingresos💸🔹</li></Link>
+                <Link to='ganancias'><li>🔹Ganancias💹🔹</li></Link>
             </ul>
         </div>
         :

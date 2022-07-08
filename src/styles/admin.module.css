@@ -5,7 +5,17 @@
     justify-content:center;
 }
 .adminOptions li{
+    padding: 1em 0.2em;
+    border:1px solid #19216D;
     margin-bottom: 24px;
+    transition: ease 0.3s;
+    text-align: center;
+}
+.adminOptions li:hover{
+    border:2px solid #19216D;
+}
+.adminOptions a{
+    text-decoration: none;
 }
 .headerGrid{
     display:grid;

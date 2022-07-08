@@ -23,10 +23,10 @@ export function putPedidoDetalle(id,  token, cantidad){
         body: JSON.stringify(cantidad)
     }).then(response => response.json())
 }
-export function deletePedidoDetalle(pedidoDetalleId){
+export function deletePedidoDetalle(pedidoDetalleId, setLoading){
     return fetch(`http://localhost:3001/pedidosDetalle/${pedidoDetalleId}`,{
         method: 'DELETE'
-    }).then(() => {})
+    }).then(() => setLoading(false))
 }
 
 //PEDIDOS

@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import handlerChangeForm from '../../../utils/handlers/handlerChangeForm'
 import getImgBase64 from '../../../utils/getImgBase64'
-import { postArticulosManufacturados, putArticuloManufacturado } from '../../../utils/articulosManufacturados'
+import { postArticulosManufacturados, putArticuloManufacturado, updateArticulosState } from '../../../utils/articulosManufacturados'
 
 import styles from '../../../styles/admin.module.css'
 const {select} = styles
@@ -13,7 +13,7 @@ const INITIAL_STATE={
     imagen: '',
     tiempoEstimadoCocina: ''
 }
-export default function FormArticuloManufacturado({token, setModal, articulo, edit, setEdit}){
+export default function FormArticuloManufacturado({token, setModal, articulo, edit, setEdit, setLoading, setArticulos}){
     const [articuloForm, setArticuloForm] = useState(INITIAL_STATE)
     const [articuloEdit, setArticuloEdit] = useState(false)
     const titulo = edit ? 'Editar Plato'
@@ -40,9 +40,11 @@ export default function FormArticuloManufacturado({token, setModal, articulo, ed
         evt.preventDefault()
         if(edit && articuloEdit){
             putArticuloManufacturado(articulo.id, token, articuloForm)
+            .then(() => updateArticulosState(setArticulos, setLoading))
         }else{
             postArticulosManufacturados(articuloForm, token)
-            .then(() => setArticuloForm(INITIAL_STATE))  
+            .then(() => setArticuloForm(INITIAL_STATE))
+            .finally(() => updateArticulosState(setArticulos, setLoading))  
         }
         setModal(false)
         setArticuloEdit(false)
