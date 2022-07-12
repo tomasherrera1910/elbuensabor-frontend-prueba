@@ -3,6 +3,7 @@ import { getPedidos, putPedido } from '../../utils/pedidos'
 
 import Spinner from '../Spinner'
 import styles from '../../styles/cajero.module.css'
+import { postFactura } from '../../utils/factura'
 const {cajeroCard, pagoPendiente, pagoRealizado, buttonFinalizado} = styles
 export default function PedidosFinalizadosCard({pedido, token, setPedidos}){
     const [loader, setLoader] = useState(false)    
@@ -21,9 +22,13 @@ export default function PedidosFinalizadosCard({pedido, token, setPedidos}){
             setLoader(true)
             putPedido(token, pedido.id, {estado:'FACTURADO'})
             .then(() => {
-                    getPedidos(token, 'finalizados')
-                    .then(setPedidos)
-                    .finally(() => setLoader(false))})
+                    postFactura({formaPago:pedido.metodoPago, pedido:pedido.id})
+                    .then(() => {
+                        getPedidos(token, 'finalizados')
+                        .then(setPedidos)
+                        .finally(() => setLoader(false))
+                    })
+                })
         }
     }                                                                                                
                                                                                                     

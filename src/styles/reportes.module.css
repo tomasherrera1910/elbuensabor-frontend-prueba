@@ -22,7 +22,7 @@
 .container label input:focus{
     border-bottom: solid 2px #D03737; 
 }
-.container button{
+.container button:not(.excelButton){
     background-color: #19216D;
     color: #fff;
     border: none;
@@ -33,7 +33,7 @@
     max-width: 300px;
     height: 2.5em;
 }
-.container button:hover{
+.container button:hover:not(.excelButton){
     transition: ease 0.6s;
     background-color: #D03737;
     border:none
@@ -53,4 +53,18 @@
 }
 .container table tr:last-child{
     background-color: #19216D;
+}
+.excelButton{
+    background-color: #189111;
+    color: #fff;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 24px;
+    max-width: 300px;
+    height: 2.5em;
+    transition:ease 0.3s;
+}
+.excelButton:hover{
+    opacity:0.8;
 }

@@ -1,14 +1,12 @@
-import {useState} from 'react'
 import {Link} from 'react-router-dom'
 import styles from '../styles/home.module.css'
-const {container} = styles
+const {container,title} = styles
 export function Home(){
-    const [usuario, ] = useState(JSON.parse(window.localStorage.getItem('userLoggedBuenSabor')))
+    
     return(
         <div className={container}>
-            BIENVENIDO AL BUEN SABOR {usuario?.username}
-            <p>El Delivery de comidas de la ciudad “El Buen Sabor”, ofrece a sus clientes una amplia variedad de bebidas y de comidas de fabricación propia, posee un
-            horario de atención de lunes a domingos de 20:00 a 12:00, y de sábados y domingos de 11:00 a 15:00. L</p>
+            <h1 className={title}>BIENVENIDO AL BUEN SABOR</h1>
+            <h3><strong>Horarios: </strong>Lun a Dom de 20:00 a 00:00, Sab y Dom de 11:00 a 15:00.</h3>
             <Link to='/menus'> Ver los menús</Link>
         </div>
     )

@@ -68,3 +68,8 @@ export function putPedido(token, pedidoId, data){
         body: JSON.stringify(data)
     }).then(response => response.json())
 }
+export function deletePedido(pedidoId){
+    return fetch(`http://localhost:3001/pedidos/${pedidoId}`,{
+        method: 'DELETE'
+    })
+}
