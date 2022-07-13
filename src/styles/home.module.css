@@ -1,9 +1,8 @@
 .container{
-    margin: 4.5em 0.2em;
+    margin: 4em 0;
     display:flex;
     flex-direction: column;
     align-items: center;
-    /* background-image: url('../assets/images/elBuenSaborLogo.png'); */
 }
 .buttonStyle{
     color: #fff;
@@ -42,12 +41,135 @@
 .table tbody tr td{
     border-bottom: 1px solid #55555f;
 }
+.containerHome{
+    margin: 4em 0;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: space-between;
+}
 .title{
     text-align: center;
+    font-size: 50px;
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-shadow: -3px 2px 0 rgba(255, 255, 255, 0.2), -6px 4px 0 rgba(0, 0, 0, 0.1);
 }
-container h3{
+.containerText h3{
     text-align: center;
+    font-size:24px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-shadow: 2px 2px 3px black, 0 0 1.2em black, 0 0 0.4em black;
 }
+.containerImage{
+    background-image: url('../assets/images/pizzafondohome.jpg');
+    background-size: cover;
+    width: 98.5vw;
+    height: calc(100vh - 4em);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.containerText{
+    padding-right: 2em;
+}
+.containerSubSection{
+    display:flex;
+    width: 95vw;
+    height: 75vh;
+    padding: 0 1em;
+    gap:2em;
+    justify-content: space-between;
+}
+.menuBebidaContainer{
+    display:flex; 
+    flex-direction: column; 
+    gap: 5vh;
+}
+.menusCard{
+    background-image: url('../assets/images/hamburguesamenucard.jpg');
+    background-size: cover;
+    border-radius: 24px;
+    height: 35vh;
+    width: 40vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bebidasCard{
+    background-image: url('../assets/images/bebidasfondo.jpeg');
+    background-size: cover;
+    border-radius: 24px;
+    height: 35vh;
+    width: 40vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bebidasCard:hover,
+.menusCard:hover{
+    transition: ease-in-out 0.5s;
+    transform:scale(0.9);
+    -webkit-transform:scale(0.9);
+    box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.42), 0 12px 24px 0 rgba(255, 255, 255, 0.54);
+}
+
+.pedidosCard{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+    height: 75vh;
+    width:fit-content;
+    padding: 0.5em 3em;
+    max-width: 45vw;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 6px 20px 0 rgba(0, 0, 0, 0.98);
+}
+.pedidosCard p{
+    margin:0;
+}
+.pedidosCard ul{
+    margin:0;
+    padding: 0;
+}
+.pedidosCard ul li{
+    list-style: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    margin: 0;
+    padding: 0;
+}
+.pedidosCard h1{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 32px;
+    margin:0 0 4px 0;
+    
+}
+@media (max-width: 768px) {
+    .containerImage{
+        width:100vw;
+    }
+    .containerSubSection{
+        flex-direction: column;
+        align-items: center;
+    }
+    .menusCard{
+        width: 80vw;
+        height: 20vh;
+    }
+    .bebidasCard{
+        width: 80vw;
+        height: 20vh;
+        margin-bottom: 1em;
+    }
+    .pedidosCard{
+        min-width: 60vw;
+        padding-bottom: 2em;
+    }
+  }
+  @media (max-width: 426px) {
+    .containerSubSection{
+        padding: 0;
+    }
+    
+  }   
