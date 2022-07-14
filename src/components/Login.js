@@ -5,6 +5,7 @@ import handlerChangeForm from '../utils/handlers/handlerChangeForm'
 
 import styles from '../styles/form.module.css'
 import useLocalStorage from '../hooks/useLocalStorage'
+import GoogleLogin from './GoogleLogin'
 const {container, firstButton, campoInvalido} = styles
 
 export function Login(){
@@ -40,6 +41,7 @@ export function Login(){
                 <img src={require(`../assets/images/elBuenSaborLogo.png`)} alt={`Logo Buen Sabor`} />
             </section>
             <section>
+                <GoogleLogin/>
             <form onSubmit={handlerLogin}>
                 <p>
                 <input type='text' placeholder="Correo electrónico..." name='email' value={usuarioForm['email']} onChange={handleChange}/>
