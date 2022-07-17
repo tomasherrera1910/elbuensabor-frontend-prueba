@@ -1,5 +1,7 @@
+const fetchUrl= process.env.REACT_APP_FETCH_BACKEND
+
 export default function postMercadopago(data){
-    return fetch(`http://localhost:3001/mercadopago`, {
+    return fetch(`${fetchUrl}/mercadopago`, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json; charset=UTF-8'

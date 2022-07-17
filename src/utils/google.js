@@ -1,5 +1,7 @@
+const fetchUrl= process.env.REACT_APP_FETCH_BACKEND
+
 export function loginGoogle(data){
-    return fetch(`http://localhost:3001/googleLogin`, {
+    return fetch(`${fetchUrl}/googleLogin`, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json; charset=UTF-8'

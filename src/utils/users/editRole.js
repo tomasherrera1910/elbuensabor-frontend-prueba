@@ -1,5 +1,7 @@
+const fetchUrl= process.env.REACT_APP_FETCH_BACKEND 
+
 export default function editRole(id, rol){
-    return fetch(`http://localhost:3001/users/${id}`, {
+    return fetch(`${fetchUrl}/users/${id}`, {
         method: 'PUT',
         headers: {
             'Content-type': 'application/json; charset=UTF-8'

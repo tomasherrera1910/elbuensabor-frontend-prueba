@@ -1,9 +1,11 @@
+const fetchUrl= process.env.REACT_APP_FETCH_BACKEND
+
 export function getAddress(userId){
-    return fetch(`http://localhost:3001/addresses/${userId}`)
+    return fetch(`${fetchUrl}/addresses/${userId}`)
            .then(response => response.json())
 }
 export function postAddress(address, token){
-    return fetch(`http://localhost:3001/addresses`, {
+    return fetch(`${fetchUrl}/addresses`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -13,7 +15,7 @@ export function postAddress(address, token){
     }).then(response => response.json())
 }
 export function deleteAddress(addressId){
-    return fetch(`http://localhost:3001/addresses/${addressId}`,{
+    return fetch(`${fetchUrl}/addresses/${addressId}`,{
         method: 'DELETE'
     }).then(() => {})
 }

@@ -1,5 +1,7 @@
+const fetchUrl= process.env.REACT_APP_FETCH_BACKEND
+
 export default function postUser(user) {
-    return fetch(`http://localhost:3001/users`, {
+    return fetch(`${fetchUrl}/users`, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json; charset=UTF-8'

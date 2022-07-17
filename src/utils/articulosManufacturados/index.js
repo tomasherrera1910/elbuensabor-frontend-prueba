@@ -1,13 +1,15 @@
+const fetchUrl= process.env.REACT_APP_FETCH_BACKEND
+
 export function getArticulosManufacturados(){
-    return fetch(`http://localhost:3001/articulosManufacturados`)
+    return fetch(`${fetchUrl}/articulosManufacturados`)
            .then(response => response.json())
 }
 export function getOneArticuloManufacturado(id){
-    return fetch(`http://localhost:3001/articulosManufacturados/${id}`)
+    return fetch(`${fetchUrl}/articulosManufacturados/${id}`)
            .then(response => response.json())
 }
 export function postArticulosManufacturados(articulo, token){
-    return fetch(`http://localhost:3001/articulosManufacturados`,{
+    return fetch(`${fetchUrl}/articulosManufacturados`,{
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -17,7 +19,7 @@ export function postArticulosManufacturados(articulo, token){
     }).then(response => response.json())
 }
 export function putArticuloManufacturado(articuloId, token, articuloEdit){
-    return fetch(`http://localhost:3001/articulosManufacturados/${articuloId}`, {
+    return fetch(`${fetchUrl}/articulosManufacturados/${articuloId}`, {
         method: 'PUT',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -28,7 +30,7 @@ export function putArticuloManufacturado(articuloId, token, articuloEdit){
     .then(response => response.json())  
 }
 export function deleteArticuloManufacturado(articuloId, token, setArticulos, setLoading){
-    return fetch(`http://localhost:3001/articulosManufacturados/${articuloId}`,{
+    return fetch(`${fetchUrl}/articulosManufacturados/${articuloId}`,{
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`
@@ -37,7 +39,7 @@ export function deleteArticuloManufacturado(articuloId, token, setArticulos, set
 }
 //ARTICULOS MANUFACTURADOS DETALLE (INGREDIENTES DEL PLATO)
 export function postArticuloDetalle(idPlato, token, ingrediente){
-    return fetch(`http://localhost:3001/articulosManuDetalle/${idPlato}`,{
+    return fetch(`${fetchUrl}/articulosManuDetalle/${idPlato}`,{
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${token}`,
@@ -47,7 +49,7 @@ export function postArticuloDetalle(idPlato, token, ingrediente){
     }).then(response => response.json())
 }
 export function deleteArticuloDetalle(token, idArtDetalle){
-    return fetch(`http://localhost:3001/articulosManuDetalle/${idArtDetalle}`,{
+    return fetch(`${fetchUrl}/articulosManuDetalle/${idArtDetalle}`,{
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${token}`
