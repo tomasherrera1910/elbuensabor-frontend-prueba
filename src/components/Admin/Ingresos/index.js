@@ -18,11 +18,11 @@ export default function Ingresos(){
             <form onSubmit={ingresosSubmit}>
             <label>
             Desde:     
-            <input type='date' value={fechaDesde} onChange={(e) => setFechaDesde(e.target.value)}/>
+            <input type='date' value={fechaDesde} onChange={(e) => setFechaDesde(e.target.value)} pattern="\d{4}-\d{2}-\d{2}"/>
             </label>
             <label>
             Hasta: 
-            <input type='date' value={fechaHasta} onChange={(e) => setFechaHasta(e.target.value)}/>
+            <input type='date' value={fechaHasta} onChange={(e) => setFechaHasta(e.target.value)} pattern="\d{4}-\d{2}-\d{2}"/>
             </label>
             <button>MOSTRAR INGRESOS</button>
             <span style={displayError}>Debe ingresar ambas fechas para ver los ingresos!</span>
