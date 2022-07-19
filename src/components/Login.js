@@ -35,7 +35,7 @@ export function Login(){
         .then(setUsuario)
         .finally(() => setLoading(false))
         setUsuarioForm({
-            email:'',
+            email:'', 
             clave:''
         })
     }
