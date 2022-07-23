@@ -1,27 +1,14 @@
-import {useState, useEffect} from 'react'
-import { useSearchParams } from 'react-router-dom'
+import {useState} from 'react'
 import MercadopagoCheckOut from './MercadopagoCheckOut'
-import { deletePedido, getPedidoXusuario, putPedido } from '../../utils/pedidos'
+import { deletePedido, getPedidoXusuario } from '../../utils/pedidos'
+import useMercadopago from '../../hooks/useMercadopago'
 
 import styles from '../../styles/pedido.module.css'
 const {pedidosCard, warningAlert, pedidoEnCocina, successAlert, mercadopagoButton, spanSubtotal, eliminarPedido} = styles
 export default function SuPedidoCard({pedido, token, setLoading, setPedidos, usuarioId}){
     const [renderMercadopago,setRenderMercadopago] = useState(false)
-    const [articulos, setArticulos] = useState('')
-    const [query] = useSearchParams();
-    const status = query.get("status");
-    useEffect(() => {
-        let articulosDescripcion = ''
-        pedido.detallesPedidos?.forEach((detalle) => {
-            articulosDescripcion +=  `${detalle.articulo} x${detalle.cantidad}, `
-        })
-        setArticulos(articulosDescripcion)        
-    },[pedido.detallesPedidos]) 
-    useEffect(() => {
-        if(status){
-            putPedido(token, pedido.id, {estadoMercadoPago:status})
-        }
-    },[status, pedido.id, token])
+    const {status, articulos} = useMercadopago(pedido, token)
+    
     const mercadoPagoHandler = () => {
         setRenderMercadopago(true)
     }
@@ -38,7 +25,6 @@ export default function SuPedidoCard({pedido, token, setLoading, setPedidos, usu
     return(
         <section key={pedido.id} className={pedidosCard}>
                     <h2>Su pedido:</h2>
-                    <p><span>Pedido ID:</span> {pedido.id}</p>
                     {pedido.estado === 'RECHAZADO' && <p><span>Estado:</span><span className={warningAlert}>SU PEDIDO FUE RECHAZADO</span></p>}
                     {pedido.estado === 'RECHAZADO' && <button className={eliminarPedido} onClick={deleteHandler}>🗑 Eliminar de bandeja de pendientes</button>}
                     {pedido.mensaje && <p><span>Motivo:</span><span className={warningAlert}>{pedido.mensaje}</span></p>}
@@ -62,7 +48,7 @@ export default function SuPedidoCard({pedido, token, setLoading, setPedidos, usu
                             <img src={require(`../../assets/images/mercadopago.png`)} alt={`logo mercadopago`} />
                         </button>
                         }       
-                        {renderMercadopago && <MercadopagoCheckOut data={{articulos, total:pedido.total}} id={pedido.id}/>}
+                        {renderMercadopago && <MercadopagoCheckOut data={{articulos, total:pedido.total, id:pedido.id}} id={pedido.id}/>}
                     </div>
                     }
                     {((pedido.estadoMercadoPago === 'approved' || status === 'approved') && pedido.metodoPago === 'Mercado Pago') && <p><span>Estado del pago:</span><span className={successAlert}>PAGADO!</span></p>}
