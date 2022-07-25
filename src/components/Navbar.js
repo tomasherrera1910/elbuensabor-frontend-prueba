@@ -1,13 +1,10 @@
 import {useEffect} from 'react'
 import {Link, useMatch} from 'react-router-dom'
 import useLocalStorage from '../hooks/useLocalStorage'
-
-import styles from '../styles/navbar.module.css'
 import Cart from './Cart'
+import BurguerMenu from './svg/BurguerMenu'
+import styles from '../styles/navbar.module.css'
 const {nav, navList, navListVisible, adminStyle, cajeroStyle, cocineroStyle, navButton} = styles
-
-
-
 export function Navbar (){
     const {usuario, setUsuario, sesionHandler} = useLocalStorage()
     let matchHome = useMatch('/')
@@ -50,7 +47,7 @@ export function Navbar (){
             <section>
             {usuario && <h2>👤 {usuario.username}</h2>}
             <Cart/>
-            <button onClick={toggleHandler} className={navButton}>⚙</button>    
+            <button onClick={toggleHandler} className={navButton}><BurguerMenu fill="#fff"/></button>    
             </section>
             <ul className={navList} id='navListToggle'>
                 <li><Link to='/login' onClick={loginButtonClick}>{buttonName}</Link></li>

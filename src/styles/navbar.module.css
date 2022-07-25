@@ -52,9 +52,7 @@
     border:none;
     color: white;
     cursor: pointer;
-    padding: 0 12px;
-    font-size: 3em;
-    margin-right: 16px;
+    margin-right: 2em;
 }
 .navList{
     display: flex;

@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import CartContext from '../../context/CartItems/CartContext'
 import useLocalStorage from '../../hooks/useLocalStorage'
 
+import CartArticle from './CartArticle'
+import CartIcon from '../svg/CartIcon'
 import stylesNavbar from '../../styles/navbar.module.css'
 import styles from '../../styles/cart.module.css'
-import CartArticle from './CartArticle'
 const {cartButton, cartList, cartListVisible, totalStyle, continuarPedido} = styles
 const {iniciarSesion} = stylesNavbar
 export default function Cart(){
@@ -21,7 +22,7 @@ export default function Cart(){
         <>
         <div className={cartButton}>
         <button onClick={toggleHandler}>
-            🛒
+            <CartIcon/>
         </button>
         <div style={displayNewItemInCart}><p>!</p></div>
         </div>
