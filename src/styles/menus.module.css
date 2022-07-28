@@ -1,10 +1,8 @@
-.container{
-    margin: 4.5em 0 0 0;
-}
 .containerSpinner{
     height:100vh;
 }
 .grid{
+    margin-top:5em;
     display: grid;
     grid-template-columns: repeat(auto-fill, 225px);
     justify-content: center;
@@ -19,7 +17,6 @@
 }
 .linkBebida{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #19216D;
     color: #fff;
     width: fit-content;
     text-decoration: none;
@@ -27,6 +24,11 @@
     border-radius: 24px;
     cursor: pointer;
     margin-bottom: 16px;
+    position:fixed;
+}
+.linkBebida:hover{
+    opacity: 0.8;
+    transition: ease-in-out 0.3s;
 }
 .cardBebida{
     display:flex;

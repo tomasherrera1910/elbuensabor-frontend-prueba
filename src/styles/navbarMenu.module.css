@@ -1,5 +1,7 @@
 .header{
     margin: 4em 0 0.5em 0;
+    
+    width: 100vw;
     height: fit-content;
     background-color: #a12525;
     display:flex;
@@ -20,5 +22,32 @@
 }
 .header button:hover{
     color: #a12525;
+    background-color: #fff;
+}
+
+/* NAVBAR PARA BEBIDAS */
+.navbarBebidas{
+    margin: 4em 0 0.5em 0;
+    width: 100vw;
+    height: fit-content;
+    background-color: #000e8f;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.navbarBebidas button{
+    background: none;
+    border:none;
+    border-right: 2px solid #090e41;
+    border-left: 2px solid #090e41;
+    padding: 0 16px 0 16px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #fff;
+    cursor:pointer;
+    transition: ease 0.5s;
+    height:2em;
+}
+.navbarBebidas button:hover{
+    color: #000e8f;
     background-color: #fff;
 }

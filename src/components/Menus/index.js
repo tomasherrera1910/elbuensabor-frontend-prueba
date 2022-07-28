@@ -21,7 +21,7 @@ export function Menus(){
     return(
         <div>
             <NavbarMenu setComidas={setComidas} setLoading={setLoading}/>
-            <Link to='/bebidas' className={linkBebida}>ir a Bebidas</Link> 
+            <Link to='/bebidas' className={linkBebida} style={{backgroundColor: "#000e8f"}}>ir a Bebidas</Link> 
             <div className={grid}>
             {comidas?.map(comida => (
                 <CardMenu key={comida.id} comida={comida}/>
